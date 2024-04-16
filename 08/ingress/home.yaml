@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: home-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: home
+  template:
+    metadata:
+      name: home-pod
+      labels:
+        name: home
+    spec:
+      containers:
+      - image: httpd
+        name: home-container
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: home-service
+  selector:
+    name: home
+spec:
+  # type: ClusterIP
+  # clusterIP: 10.233.10.10
+  ports:
+  - port: 80
+    targetPort: 80
+    # nodePort: 30200
+
+    

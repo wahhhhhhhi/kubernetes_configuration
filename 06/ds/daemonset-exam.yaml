@@ -1,0 +1,19 @@
+kind: DeamonSet
+apiVersion: apps/v1
+metadata:
+  name: deamonset-nginx
+spec:
+  selector:
+    matchLabels:
+      app: webui
+  template:
+    metadata:
+      name: nginx-pod
+      labels:
+        app: webui
+    spce:
+      containers:
+      - name: nginx-container
+        image: nginx:1.14
+        ports:
+        - containerPort: 80

@@ -1,0 +1,21 @@
+kind: ReplicaSet
+apiVersion: apps/v1
+metadata:
+  name: rs-nginx
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: wepui
+  template:
+    metadata:
+      name: rs-nginx-pod
+      labels:
+        app: wepui
+    spec:
+      containers:
+      - name: rs-nginx-container
+        image: nginx:1.14
+        ports:
+        - containerPort: 80
+        
